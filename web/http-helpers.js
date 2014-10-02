@@ -19,7 +19,6 @@ exports.send = send = function(res, body, code){
 }
 
 exports.serveLoading = serveLoading = function(res){
-  // console.log('Trying to serve: ', path.join(__dirname, 'public', '/loading.html'));
   fs.readFile(path.join(__dirname, 'public', '/loading.html'), function(err, data){
     if (err){
       send(res, null, 404);

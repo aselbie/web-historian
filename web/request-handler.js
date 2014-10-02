@@ -11,7 +11,7 @@ var actions = {
       pathName = '/index.html';
     }
     httpHelpers.serveAssets(res, pathName, function(res){
-      httpHelpers.send(res);
+      httpHelpers.send(res, null, 404);
     });
   },
   'POST': function(req, res){
