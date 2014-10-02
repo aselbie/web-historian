@@ -19,7 +19,7 @@ exports.send = send = function(res, body, code){
 }
 
 exports.serveLoading = serveLoading = function(res){
-  console.log('Trying to serve: ', path.join(__dirname, 'public', '/loading.html'));
+  // console.log('Trying to serve: ', path.join(__dirname, 'public', '/loading.html'));
   fs.readFile(path.join(__dirname, 'public', '/loading.html'), function(err, data){
     if (err){
       send(res, null, 404);
@@ -41,7 +41,7 @@ exports.serveSite = serveSite = function(res, asset, callback){
 }
 
 exports.servePublic = servePublic = function(res, asset, callback){
-  console.log('Trying to serve: ', path.join(__dirname, 'public', asset));
+  // console.log('Trying to serve: ', path.join(__dirname, 'public', asset));
   fs.readFile(path.join(__dirname, 'public', asset), function(err, data){
     if (err){
       serveSite(res, asset, callback);

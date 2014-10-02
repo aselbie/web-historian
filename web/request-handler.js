@@ -22,14 +22,22 @@ var actions = {
     })
     req.on('end', function(){
       var postData = qs.parse(body);
-      // AsyncWorkerTask(postData);
+
+      // Split off a thread to add url to sites.txt if necessary
+      archive.readListOfUrls(function(urls){
+        archive.isUrlInList(postData.url, urls, function(found){
+          if (!found){
+            archive.addUrlToList(postData.url);
+          }
+        })
+      })
+
+      // Return existing page if available, otherwise serve loading.html
       httpHelpers.serveAssets(res, postData.url, function(res){
         httpHelpers.serveLoading(res);
       });
+
     })
-    // httpHelpers.serveAssets(res, pathName, function(res){
-    //   ;
-    // });
   }
 }
 
